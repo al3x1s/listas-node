@@ -8,7 +8,7 @@ module.exports = function(Context){
     var DataManager = Context.getDataManager();
     
     router.post("/lista", function (request, response) {
-        log(request);
+        // log(request);
         var data = request.body;
         console.log(data);
         // DataManager.saveCompany(partnerid, data, (res) =>  response.json(res));    
@@ -17,7 +17,7 @@ module.exports = function(Context){
 
 
     router.get("/personal", function (request, response) {
-        log(request);
+        // log(request);
         DataManager.getPersonal((res) =>  response.json(res));
     });
 
