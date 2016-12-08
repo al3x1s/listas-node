@@ -18,7 +18,10 @@ module.exports = function(Context){
 
     router.get("/personal", function (request, response) {
         // log(request);
-        DataManager.getPersonal((res) =>  response.json(res));
+        DataManager.getPersonal( function(res){
+            response.json(res.data);
+        });
+
     });
 
     return router;
