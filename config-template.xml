@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE properties SYSTEM 'http://java.sun.com/dtd/properties.dtd'>
+<properties>
+
+    <!-- SERVER CONFIG -->
+    <entry key='web.port'>3020</entry>
+    <entry key='web.debug'>true</entry>
+
+    <!-- DATABASE CONFIG -->
+    <entry key='database.url'>*</entry>
+    <entry key='database.dbname'>x</entry>
+    <entry key='database.user'>x</entry>
+    <entry key='database.password'>x</entry>
+    <entry key='database.refreshDelay'>20</entry>
+
+    <!-- QUERIES -->
+    <entry key='database.selectPersonal'>
+        SELECT * FROM personal;
+    </entry>
+
+
+</properties>
