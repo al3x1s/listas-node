@@ -6,8 +6,12 @@
     <entry key='web.port'>3020</entry>
     <entry key='web.debug'>true</entry>
 
+    <!-- MAIL CONFIG -->
+    <entry key='mail.user'>"x.x@hotmail.com"</entry>
+    <entry key='mail.password'>x</entry>
+   
     <!-- DATABASE CONFIG -->
-    <entry key='database.url'>*</entry>
+    <entry key='database.url'>-</entry>
     <entry key='database.dbname'>x</entry>
     <entry key='database.user'>x</entry>
     <entry key='database.password'>x</entry>
@@ -16,6 +20,10 @@
     <!-- QUERIES -->
     <entry key='database.selectPersonal'>
         SELECT * FROM personal;
+    </entry>
+
+    <entry key='database.selectVehicles'>
+        SELECT * FROM vehiculo;
     </entry>
 
 

@@ -22,7 +22,6 @@ var _ = require("lodash");
 var parser = new xml2js.Parser();
 var configFile = "config.xml";
 
-
 // Constructor
 var Context = function(app, session, cb){
 	this.app = app;
@@ -33,6 +32,10 @@ var Context = function(app, session, cb){
 Context.prototype = {
 	getConfig: function(){
 		return this.config;
+	},
+
+	getMailer: function(){
+		return this.mailer;
 	},
 
 	loadConfig: function(cb){
@@ -61,6 +64,7 @@ Context.prototype = {
 		this.loadConfig(function(config){
 			this.config = config;
 			this.dataManager = require("../database/DataManager.js")(config);
+			this.mailer = require("./mailer.js")(config);
 			this.initApp();
 			cb();
 		}.bind(this));
