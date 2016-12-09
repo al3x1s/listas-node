@@ -4,10 +4,18 @@ var router = express.Router();
 var _ = require("lodash");
 var Excel = require('exceljs');
 var workbook = new Excel.Workbook();
+var fs = require('fs');
+var outputDir = './output';
+if (!fs.existsSync(outputDir)){ fs.mkdirSync(outputDir); }
+
 
 module.exports = function(Context){
     var DataManager = Context.getDataManager();
     var mailer = Context.getMailer();
+
+
+    buildListado(overkill, mailer);
+    
 
     router.post("/listado", function (request, response) {
         // log(request);
@@ -93,7 +101,7 @@ var buildListadoUnidades = function(json_data, cb){
             });
 
             var fileName = "Listado unidades (" + buildDate() + ").xlsx";
-            workbook.xlsx.writeFile("./output/" + fileName)
+            workbook.xlsx.writeFile(outputDir + "/" + fileName)
                 .then(function() {
                     cb(fileName, dataFiltered.length > 0);
                 });
@@ -123,7 +131,7 @@ var buildListadoPersonal = function(json_data, cb){
             });
 
             var fileName = "Listado personal (" + buildDate() + ").xlsx";
-            workbook.xlsx.writeFile("./output/" + fileName)
+            workbook.xlsx.writeFile(outputDir + "/" + fileName)
                 .then(function() {
                     cb(fileName, dataFiltered.length > 0);
                 });
@@ -139,3 +147,23 @@ var buildDate = function(){
     var sec = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds(); 
     return day + month + "_" + hour + min + sec;
 };
+
+var overkill = [
+     {
+         "name": "Pablo Valiente Hernandez",
+         "typeDocument": "LICENCIA",
+         "document": "0315-010993-101-3",
+         "placa": "C-92614",
+         "remolque": "RE-9389",
+         "observaciones": "RESERVA",
+         "unitType": "unidad"
+     },
+     {
+         "name": "Saul Alberto Aguilar malia",
+         "typeDocument": "DUI",
+         "document": "04899921-9",
+         "placa": "C-92614",
+         "observaciones": "",
+         "unitType": "personal"
+     }
+ ];
