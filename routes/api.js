@@ -20,7 +20,7 @@ module.exports = function(Context){
                 "placa": e.placa,
                 "remolque": e.remolque,
                 "observaciones": e.observaciones,
-                "unitType": e.personal.tipo_documento == "LICENCIA" ? "unidad" : "personal";
+                "unitType": e.personal.tipo_documento == "LICENCIA" ? "unidad" : "personal"
             };
         });
 
