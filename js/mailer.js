@@ -10,27 +10,22 @@ var transporter = nodemailer.createTransport({
     }
 });
 
-exports.registerUser = function(nameUser, emailTo, password, url){
-    var urlImage = "http://" + url + "/images/partner/"+ url + "/logo.png";
-    var urlSystem = "http://" + url;
 
+exports.sendFile = function(emailTo, path){
     var body =  '   <div style="width: 640px; font-family: Arial, Helvetica, sans-serif; font-size: 13px;">' +
-                '        <div align="left">' +
-                '           <a href="#"><img src="'+ urlImage +'" height="130"></a>' +
-                '        </div>' +
-                '        <h3>Estimado/a ' + nameUser + '</h3>' +
-                '        <p>te damos la bienvenida a nuestra plataforma de monitoreo satelital.</p>' +
-                '        <p>Puedes hacer uso de tu cuenta haciendo click en el siguiente enlace: <br></p>' +
-                '            <p><a href="'+urlSystem+'">'+urlSystem+'</a> </p>' +
-                '            <p>Email: <strong> ' + emailTo + ' </strong></p>' +
-                '            <p>Contraseña: <strong> ' + password + ' </strong></p>' +
+                '        <h3>Transportes Esmeralda</h3>' +
+                '        <p>Listado solicitado</p>' +
                 '        <p>Saludos</p>' +
                 '    </div>';
+    
     var mailOptions = {
-        from: 'GPS Company <alexis@tinyservice.info>',  
+        from: 'Transportes Esmeralda <alexis@tinyservice.info>',  
         to: emailTo, // puede ser una lista separada por comas
-        subject: "Bienvenido " + nameUser, 
-        html: body // html body
+        subject: "Listado solicitado", 
+        html: body,
+        attachments: [{  
+            path: path
+        }]
     };
     transporter.sendMail(mailOptions, function(error, info){
         if(error){
