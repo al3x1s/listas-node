@@ -13,10 +13,6 @@ module.exports = function(Context){
     var DataManager = Context.getDataManager();
     var mailer = Context.getMailer();
 
-
-    buildListado(overkill, mailer);
-    
-
     router.post("/listado", function (request, response) {
         // log(request);
         var data = request.body;
@@ -33,7 +29,8 @@ module.exports = function(Context){
         });
 
         buildListado(refactoredData, mailer);
-        response.sendStatus(200);
+        // response.sendStatus(200);
+        response.end();
     });
 
 
@@ -147,23 +144,3 @@ var buildDate = function(){
     var sec = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds(); 
     return day + month + "_" + hour + min + sec;
 };
-
-var overkill = [
-     {
-         "name": "Pablo Valiente Hernandez",
-         "typeDocument": "LICENCIA",
-         "document": "0315-010993-101-3",
-         "placa": "C-92614",
-         "remolque": "RE-9389",
-         "observaciones": "RESERVA",
-         "unitType": "unidad"
-     },
-     {
-         "name": "Saul Alberto Aguilar malia",
-         "typeDocument": "DUI",
-         "document": "04899921-9",
-         "placa": "C-92614",
-         "observaciones": "",
-         "unitType": "personal"
-     }
- ];
