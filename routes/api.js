@@ -7,7 +7,7 @@ var _ = require("lodash");
 module.exports = function(Context){
     var DataManager = Context.getDataManager();
     
-    router.post("/lista", function (request, response) {
+    router.post("/listado", function (request, response) {
         // log(request);
         var data = request.body;
         console.log(data);
