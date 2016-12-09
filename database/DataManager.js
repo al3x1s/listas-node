@@ -101,5 +101,9 @@ module.exports = function(config){
         queryExec(config["database.selectVehicles"], [], cb);
     };
 
+    dataManager.logMail = function(almacenadoraId, raw, cb){
+        queryExec(config["database.insertLogMail"], [almacenadoraId, raw], cb);   
+    }
+
     return dataManager;
 };

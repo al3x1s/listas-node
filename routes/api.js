@@ -28,10 +28,11 @@ module.exports = function(Context){
             };
         });
 
-        buildListado(refactoredData, mailer);
-        response.json({error: false});
-    });
+        buildListado(refactoredData, mailer, DataManager);
+        DataManager.logMail(1, JSON.stringify(data), function(){
 
+        });
+    });
 
     router.get("/personal", function (request, response) {
         // log(request);
@@ -54,7 +55,7 @@ module.exports = function(Context){
 };
 
 
-var buildListado = function(json_data, mailer){
+var buildListado = function(json_data, mailer, dataManager){
     buildListadoUnidades(json_data, function(pathUnidadesFile, shouldSendUnidadesFile){
         buildListadoPersonal(json_data, function(pathPersonalFile, shouldSendPersonalFile){
             var attachments = [];
@@ -65,7 +66,6 @@ var buildListado = function(json_data, mailer){
             if(shouldSendPersonalFile){
                 attachments.push({path: "./output/" + pathPersonalFile});
             }
-
             mailer.sendFile("ialexis93@gmail.com", "Listado unidades y personal - Trans. Esmeralda", attachments);
         });
     });
@@ -143,3 +143,24 @@ var buildDate = function(){
     var sec = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds(); 
     return day + month + "_" + hour + min + sec;
 };
+
+
+var overkill = [
+     {
+         "name": "Pablo Valiente Hernandez",
+         "typeDocument": "LICENCIA",
+        "document": "0315-010993-101-3",
+        "placa": "C-92614",
+        "remolque": "RE-9389",
+        "observaciones": "RESERVA",
+        "unitType": "unidad"
+    },
+    {
+        "name": "Saul Alberto Aguilar malia",
+        "typeDocument": "DUI",
+        "document": "04899921-9",
+        "placa": "C-92614",
+        "observaciones": "",
+        "unitType": "personal"
+    }
+];
