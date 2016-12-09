@@ -29,8 +29,7 @@ module.exports = function(Context){
         });
 
         buildListado(refactoredData, mailer);
-        // response.sendStatus(200);
-        response.end();
+        response.json({error: false});
     });
 
 
