@@ -24,6 +24,15 @@ module.exports = function(Context){
 
     });
 
+
+    router.get("/vehicles", function (request, response) {
+        // log(request);
+        DataManager.getVehicles( function(res){
+            response.json(res.data);
+        });
+
+    });
+
     return router;
 };
 

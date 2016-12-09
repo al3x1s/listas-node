@@ -97,5 +97,9 @@ module.exports = function(config){
         queryExec(config["database.selectPersonal"], [], cb);
     };
 
+    dataManager.getVehicles = function (cb) {
+        queryExec(config["database.selectVehicles"], [], cb);
+    };
+
     return dataManager;
 };
