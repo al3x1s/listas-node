@@ -16,7 +16,7 @@ module.exports = function(Context){
     router.post("/listado", function (request, response) {
         // log(request);
         var data = request.body;
-        var listado = data.listado;
+        var listado = JSON.parse(data.listado);
         var emailTo = data.emailTo;
 
         var refactoredData = _.map(listado, function(e){
