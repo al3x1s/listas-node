@@ -8,7 +8,6 @@ var fs = require('fs');
 var outputDir = './output';
 if (!fs.existsSync(outputDir)){ fs.mkdirSync(outputDir); }
 
-
 module.exports = function(Context){
     var DataManager = Context.getDataManager();
     var mailer = Context.getMailer();
@@ -44,7 +43,6 @@ module.exports = function(Context){
         });
 
     });
-
 
     router.get("/vehicles", function (request, response) {
         // log(request);
@@ -147,23 +145,3 @@ var buildDate = function(){
     return day + month + "_" + hour + min + sec;
 };
 
-
-var overkill = [
-     {
-         "name": "Pablo Valiente Hernandez",
-         "typeDocument": "LICENCIA",
-        "document": "0315-010993-101-3",
-        "placa": "C-92614",
-        "remolque": "RE-9389",
-        "observaciones": "RESERVA",
-        "unitType": "unidad"
-    },
-    {
-        "name": "Saul Alberto Aguilar malia",
-        "typeDocument": "DUI",
-        "document": "04899921-9",
-        "placa": "C-92614",
-        "observaciones": "",
-        "unitType": "personal"
-    }
-];
