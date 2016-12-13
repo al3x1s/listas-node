@@ -16,7 +16,10 @@ module.exports = function(Context){
     router.post("/listado", function (request, response) {
         // log(request);
         var data = request.body;
-        var refactoredData = _.map(data, function(e){
+        var listado = data.listado;
+        var emailTo = data.emailTo;
+
+        var refactoredData = _.map(listado, function(e){
             return {
                 "name": e.personal.nombre,
                 "typeDocument": e.personal.tipo_documento,
@@ -28,9 +31,9 @@ module.exports = function(Context){
             };
         });
 
-        buildListado(refactoredData, mailer, DataManager);
+        buildListado(refactoredData, , mailer, DataManager);
         DataManager.logMail(1, JSON.stringify(data), function(){
-
+            
         });
     });
 
@@ -55,7 +58,7 @@ module.exports = function(Context){
 };
 
 
-var buildListado = function(json_data, mailer, dataManager){
+var buildListado = function(json_data, emailTo, mailer, dataManager){
     buildListadoUnidades(json_data, function(pathUnidadesFile, shouldSendUnidadesFile){
         buildListadoPersonal(json_data, function(pathPersonalFile, shouldSendPersonalFile){
             var attachments = [];
@@ -66,7 +69,7 @@ var buildListado = function(json_data, mailer, dataManager){
             if(shouldSendPersonalFile){
                 attachments.push({path: "./output/" + pathPersonalFile});
             }
-            mailer.sendFile("ialexis93@gmail.com", "Listado unidades y personal - Trans. Esmeralda", attachments);
+            mailer.sendFile(emailTo, "Listado unidades y personal - Trans. Esmeralda", attachments);
         });
     });
 }
