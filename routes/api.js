@@ -31,9 +31,9 @@ module.exports = function(Context){
             };
         });
 
-        buildListado(refactoredData, , mailer, DataManager);
+        buildListado(refactoredData, emailTo, mailer, DataManager);
         DataManager.logMail(1, JSON.stringify(data), function(){
-            
+
         });
     });
 
