@@ -1,5 +1,5 @@
 var format = require('date-format');
-var _ = require("underscore"); 
+var _ = require("lodash"); 
 
 var log = function(req){  
     var date = format('dd/MM/yy hh:mm:ss', new Date());
