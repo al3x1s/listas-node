@@ -136,11 +136,9 @@ var buildListadoPersonal = function(json_data, cb){
 
 var buildDate = function(){
     var date = new Date();
-    var day = date.getDate() < 10 ? "0" + date.getDate() : date.getDate();
-    var month = date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1;
     var hour = date.getHours();
     var min = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
     var sec = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds(); 
-    return day + month + "_" + hour + min + sec;
+    return hour + "h" + min + "m" + sec + "s";
 };
 

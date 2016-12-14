@@ -1,5 +1,7 @@
 // http://nodemailer.com
 var nodemailer = require('nodemailer');
+var fs = require('fs');
+var _ = require("lodash");
 
 module.exports = function(config){
     var transporter = nodemailer.createTransport({
@@ -27,8 +29,11 @@ module.exports = function(config){
             transporter.sendMail(mailOptions, function(error, info){
                 if(error){ return console.log(error);}
                 console.log('Mensaje enviado: ' + info.response);
+                _.each(attachments, (a) => fs.unlinkSync(a.path));
             });
         }
 
     };
 };
+
+
