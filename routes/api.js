@@ -30,9 +30,14 @@ module.exports = function(Context){
         });
 
         buildListado(refactoredData, data.emailTo, mailer, DataManager);
-        DataManager.logMail(1, JSON.stringify(data.listado), data.emailTo.join(", "), function(){
+
+        var emailTo = typeof data.emailTo == "string" ? data.emailTo : data.emailTo.join(", ");
+        DataManager.logMail(1, JSON.stringify(data.listado), emailTo, function(){
             console.log("Listado guardado correctamente");
         });
+
+
+
     });
 
     router.get("/personal", function (request, response) {
