@@ -27,11 +27,11 @@
     </entry>
 
     <entry key='database.insertLogMail'>
-        INSERT INTO lista_logger(almacenadora_id, raw) VALUES (?,?);
+        INSERT INTO lista_logger(almacenadora_id, raw, emailTo) VALUES (?,?,?);
     </entry>
 
     <entry key='database.getListados'>
-        SELECT * FROM lista_logger LIMIT 30;
+        SELECT id, UNIX_TIMESTAMP(fecha) as fecha, almacenadora_id, raw FROM lista_logger LIMIT 30;
     </entry>
 
     <entry key='database.getDestinatarios'>

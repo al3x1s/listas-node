@@ -30,7 +30,7 @@ module.exports = function(Context){
         });
 
         buildListado(refactoredData, data.emailTo, mailer, DataManager);
-        DataManager.logMail(1, JSON.stringify(data), function(){
+        DataManager.logMail(1, JSON.stringify(data.listado), data.emailTo.join(", "), function(){
             console.log("Listado guardado correctamente");
         });
     });
