@@ -28,12 +28,10 @@ module.exports = function(config){
             };
             transporter.sendMail(mailOptions, function(error, info){
                 if(error){ return console.log(error);}
-                console.log('Mensaje enviado: ' + info.response);
                 _.each(attachments, (a) => fs.unlinkSync(a.path));
+                console.log('Mensaje enviado: ' + info.response);
             });
         }
 
     };
 };
-
-
