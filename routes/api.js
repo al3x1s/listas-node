@@ -51,8 +51,36 @@ module.exports = function(Context){
 
     });
 
+    router.get("/listado", function (request, response) {
+        log(request);
+        DataManager.getListados( function(res){
+            response.json(res.data);
+        });
+    });
+
+    router.get("/destinatario", function (request, response) {
+        log(request);
+        DataManager.getDestinatarios( function(res){
+            response.json(res.data);
+        });
+    });
+
+
+
     return router;
 };
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 var buildListado = function(json_data, emailTo, mailer, dataManager){

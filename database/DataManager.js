@@ -105,5 +105,13 @@ module.exports = function(config){
         queryExec(config["database.insertLogMail"], [almacenadoraId, raw], cb);   
     }
 
+    dataManager.getListados = function(cb){
+        queryExec(config["database.getListados"], [], cb);   
+    }
+
+    dataManager.getDestinatarios = function(cb){
+        queryExec(config["database.getDestinatarios"], [], cb);   
+    }
+
     return dataManager;
 };
