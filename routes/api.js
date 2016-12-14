@@ -3,6 +3,7 @@ var express = require('express');
 var router = express.Router();
 var _ = require("lodash");
 var Excel = require('exceljs');
+var log = require("../js/log.js");
 var workbook = new Excel.Workbook();
 var fs = require('fs');
 var outputDir = './output';
@@ -13,12 +14,10 @@ module.exports = function(Context){
     var mailer = Context.getMailer();
 
     router.post("/listado", function (request, response) {
-        // log(request);
+        log(request);
         var data = request.body;
-        var listado = JSON.parse(data.listado);
-        var emailTo = data.emailTo;
-
-        var refactoredData = _.map(listado, function(e){
+        data.listado = JSON.parse(data.listado); 
+        var refactoredData = _.map(data.listado, function(e){
             return {
                 "name": e.personal.nombre,
                 "typeDocument": e.personal.tipo_documento,
@@ -30,14 +29,14 @@ module.exports = function(Context){
             };
         });
 
-        buildListado(refactoredData, emailTo, mailer, DataManager);
+        buildListado(refactoredData, data.emailTo, mailer, DataManager);
         DataManager.logMail(1, JSON.stringify(data), function(){
-
+            console.log("Listado guardado correctamente");
         });
     });
 
     router.get("/personal", function (request, response) {
-        // log(request);
+        log(request);
         DataManager.getPersonal( function(res){
             response.json(res.data);
         });
@@ -45,7 +44,7 @@ module.exports = function(Context){
     });
 
     router.get("/vehicles", function (request, response) {
-        // log(request);
+        log(request);
         DataManager.getVehicles( function(res){
             response.json(res.data);
         });
