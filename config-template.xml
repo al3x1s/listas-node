@@ -26,5 +26,16 @@
         SELECT * FROM vehiculo;
     </entry>
 
+    <entry key='database.insertLogMail'>
+        INSERT INTO lista_logger(almacenadora_id, raw) VALUES (?,?);
+    </entry>
+
+    <entry key='database.getListados'>
+        SELECT * FROM lista_logger LIMIT 30;
+    </entry>
+
+    <entry key='database.getDestinatarios'>
+        SELECT * FROM destinatario_mail;
+    </entry>
 
 </properties>
