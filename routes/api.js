@@ -34,9 +34,8 @@ module.exports = function(Context){
         var emailTo = typeof data.emailTo == "string" ? data.emailTo : data.emailTo.join(", ");
         DataManager.logMail(1, JSON.stringify(data.listado), emailTo, function(){
             console.log("Listado guardado correctamente");
+            response.send(true);
         });
-
-
 
     });
 
