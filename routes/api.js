@@ -18,16 +18,17 @@ module.exports = function(Context){
         var data = request.body;
         data.listado = JSON.parse(data.listado); 
 
-        var unitType = "";
-        if(e.personal && e.personal.tipo_documento == "LICENCIA"){
-            unitType = "unidad";
-        }else if(e.placa && e.placa.length > 0 && !e.personal){
-            unitType = "unidad";    
-        }else{
-            unitType = "personal";
-        }
-
+        
         var refactoredData = _.map(data.listado, function(e){
+            var unitType = "";
+            if(e.personal && e.personal.tipo_documento == "LICENCIA"){
+                unitType = "unidad";
+            }else if(e.placa && e.placa.length > 0 && !e.personal){
+                unitType = "unidad";    
+            }else{
+                unitType = "personal";
+            }
+            
             return {
                 "name": (e.personal && e.personal.nombre) ? e.personal.nombre : "",
                 "typeDocument": (e.personal && e.personal.tipo_documento) ? e.personal.tipo_documento : "",
