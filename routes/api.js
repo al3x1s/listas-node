@@ -17,6 +17,16 @@ module.exports = function(Context){
         log(request);
         var data = request.body;
         data.listado = JSON.parse(data.listado); 
+
+        var unitType = "";
+        if(e.personal && e.personal.tipo_documento == "LICENCIA"){
+            unitType = "unidad";
+        }else if(e.placa && e.placa.length > 0 && !e.personal){
+            unitType = "unidad";    
+        }else{
+            unitType = "personal";
+        }
+
         var refactoredData = _.map(data.listado, function(e){
             return {
                 "name": (e.personal && e.personal.nombre) ? e.personal.nombre : "",
@@ -25,7 +35,7 @@ module.exports = function(Context){
                 "placa": e.placa ? e.placa : "",
                 "remolque": e.remolque ? e.remolque : "" ,
                 "observaciones": e.observaciones ? e.observaciones : "",
-                "unitType": e.personal.tipo_documento == "LICENCIA" ? "unidad" : "personal"
+                "unitType": unitType
             };
         });
 
@@ -34,7 +44,7 @@ module.exports = function(Context){
         var emailTo = typeof data.emailTo == "string" ? data.emailTo : data.emailTo.join(", ");
         DataManager.logMail(1, JSON.stringify(data.listado), emailTo, function(){
             console.log("Listado guardado correctamente");
-            response.send(true);
+            response.send(data);
         });
 
     });
