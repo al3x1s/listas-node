@@ -19,12 +19,12 @@ module.exports = function(Context){
         data.listado = JSON.parse(data.listado); 
         var refactoredData = _.map(data.listado, function(e){
             return {
-                "name": e.personal.nombre,
-                "typeDocument": e.personal.tipo_documento,
-                "document": e.personal.documento,
-                "placa": e.placa,
-                "remolque": e.remolque,
-                "observaciones": e.observaciones,
+                "name": (e.personal && e.personal.nombre) ? e.personal.nombre : "",
+                "typeDocument": (e.personal && e.personal.tipo_documento) ? e.personal.tipo_documento : "",
+                "document": (e.personal && e.personal.documento) ? e.personal.documento : "",
+                "placa": e.placa ? e.placa : "",
+                "remolque": e.remolque ? e.remolque : "" ,
+                "observaciones": e.observaciones ? e.observaciones : "",
                 "unitType": e.personal.tipo_documento == "LICENCIA" ? "unidad" : "personal"
             };
         });
