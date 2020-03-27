@@ -124,7 +124,7 @@ var buildListadoUnidades = function(json_data, cb){
         OBSERVACIONES = "G", 
         initRow = 12;
 
-    workbook.xlsx.readFile("templates/plantilla_motoristas.xls")
+    workbook.xlsx.readFile("templates/plantilla_motoristas.xlsx")
         .then(function() { 
             var worksheet = workbook.getWorksheet(14);
             workbook.views = [{ x: 0, y: 0, width: 25000, height: 18000, firstSheet: 1, activeTab: 1, visibility: 'visible'}];    
@@ -139,7 +139,7 @@ var buildListadoUnidades = function(json_data, cb){
                 initRow += 1;
             });
 
-            var fileName = "Listado unidades (" + buildDate() + ").xls";
+            var fileName = "Listado unidades (" + buildDate() + ").xlsx";
             workbook.xlsx.writeFile(outputDir + "/" + fileName)
                 .then(function() {
                     cb(fileName, dataFiltered.length > 0);
