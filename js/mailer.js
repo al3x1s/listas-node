@@ -5,7 +5,13 @@ var _ = require("lodash");
 
 module.exports = function(config){
     var transporter = nodemailer.createTransport({
-        service: "hotmail",
+        //service: "hotmail",
+        host: "smtp-mail.outlook.com",
+        secureConnection: false, // TLS requires secureConnection to be false
+        port: 587, // port for secure SMTP
+        tls: {
+            ciphers:'SSLv3'
+        },
         auth: {
             user: config["mail.user"],
             pass: config["mail.password"]

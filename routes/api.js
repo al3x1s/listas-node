@@ -18,7 +18,6 @@ module.exports = function(Context){
         var data = request.body;
         data.listado = JSON.parse(data.listado); 
 
-        
         var refactoredData = _.map(data.listado, function(e){
             var unitType = "";
             if(e.personal && e.personal.tipo_documento == "LICENCIA"){
@@ -45,7 +44,8 @@ module.exports = function(Context){
         var emailTo = typeof data.emailTo == "string" ? data.emailTo : data.emailTo.join(", ");
         DataManager.logMail(1, JSON.stringify(data.listado), emailTo, function(){
             console.log("Listado guardado correctamente");
-            response.send(data);
+            // response.send(data);
+            response.status(200).send("Correo enviado.");
         });
 
     });
